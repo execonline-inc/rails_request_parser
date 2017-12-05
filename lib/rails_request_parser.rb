@@ -9,6 +9,10 @@ class RailsRequestParser
     chrome = 'Chrome'.freeze
     return UserAgentParser.parse(@request.user_agent).family == chrome
   end
+  def is_firefox_browser?
+    firefox = 'Firefox'.freeze
+    return UserAgentParser.parse(@request.user_agent).family == firefox
+  end
   def is_electron_client?
     electron = 'Electron'.freeze
     return @request.user_agent.include? electron
