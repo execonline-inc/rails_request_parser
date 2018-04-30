@@ -1,9 +1,13 @@
-# require "rails_request_parser/version"
+require "rails_request_parser/version"
 require 'user_agent_parser'
 
 class RailsRequestParser
   def initialize(request)
     @request = request
+  end
+  def is_safari_browser?
+    safari = 'Safari'.freeze
+    return UserAgentParser.parse(@request.user_agent).family === safari
   end
   def is_chrome_browser?
     chrome = 'Chrome'.freeze

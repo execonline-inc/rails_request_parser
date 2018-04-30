@@ -22,6 +22,32 @@ describe RailsRequestParser do
       request_parser = RailsRequestParser.new(request)
       expect(request_parser.is_chrome_browser?).to eq(false)
     end
+    it 'returns false when user agent is Safari' do
+      safari_user_agent =  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15<Paste>"
+      # Mock the Rails request object
+      Request = Struct.new(:user_agent)
+      request = Request.new(safari_user_agent)
+      request_parser = RailsRequestParser.new(request)
+      expect(request_parser.is_chrome_browser?).to eq(false)
+    end
+  end
+  describe '.is_safari_browser?' do
+    it 'returns true when user agent is safari' do
+      safari_user_agent =  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1 Safari/605.1.15<Paste>"
+      # Mock the Rails request object
+      Request = Struct.new(:user_agent)
+      request = Request.new(safari_user_agent)
+      request_parser = RailsRequestParser.new(request)
+      expect(request_parser.is_safari_browser?).to eq(true)
+    end
+    it 'returns false when user agent is chrome' do
+      chrome_user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36"
+      # Mock the Rails request object
+      Request = Struct.new(:user_agent)
+      request = Request.new(chrome_user_agent)
+      request_parser = RailsRequestParser.new(request)
+      expect(request_parser.is_safari_browser?).to eq(false)
+    end
   end
   describe '.is_firefox_browser?' do
     it 'returns true when user agent is firefox' do

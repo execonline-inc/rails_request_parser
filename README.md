@@ -24,6 +24,7 @@ request_parser.is_electron_client? #=> true
 request_parser.is_windows_os? #=> false
 request_parser.is_chrome_browser? #=> true
 request_parser.is_firefox_browser? #=> true
+request_parser.is_safari_browser? #=> true
 ```
 
 ## License
